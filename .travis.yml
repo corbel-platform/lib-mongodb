@@ -1,0 +1,11 @@
+language: java
+jdk:
+- oraclejdk8
+script:
+- mvn clean deploy --settings settings.xml
+after_success:
+- mvn clean test jacoco:report coveralls:report
+env:
+  global:
+  - secure: P6sYCm+Y83qONHifvssPios9SLfL7U6Nk+92M2PUOLy/4zPTeiz95PddVdIUPasrbz8gfM2Ofh8DUubo8HODjdKS/5NYsu/IpsuevOo6gVascKkB1NtVfgDFQOMboVSzqDeA3z4vB6Lmx9hjWfTkHrHJDdNKjNWAP3X29L3+8Kg=
+  - secure: DN1x/UWPuJti7P6MTB76B7d6XLQcPqOg5fC3KA6IeAMLUHtx9gG9gtYjPTyw+BvpSYl2DXNuFrqHHYNirKPW7F+OTHDBB/S0euL4Jr92i/uskSQHh9SxqVavoGmWWTeFjUQh67t7Eqrb7rH23ul97pXmXtfR9DMlP329v43T4AE=
