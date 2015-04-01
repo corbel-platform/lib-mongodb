@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.bq.oss</groupId>
         <artifactId>oss-parents</artifactId>
-        <version>0.2.0</version>
+        <version>0.4.0</version>
     </parent>
 
     <groupId>com.bq.oss.lib</groupId>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>com.bq.oss.lib</groupId>
             <artifactId>config</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -74,13 +74,18 @@
 
     <profiles>
         <profile>
-            <id>release</id>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
