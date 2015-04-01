@@ -32,8 +32,8 @@
     </organization>
 
     <scm>
-        <connection>scm:git:ssh://yebenes@git.dev.bqsoftware.net:29418/lib-mongodb</connection>
-        <developerConnection>scm:git:ssh://yebenes@git.dev.bqsoftware.net:29418/lib-mongodb</developerConnection>
+        <connection>scm:git:ssh://bq-devtools@git.dev.bqsoftware.net:29418/lib-mongodb</connection>
+        <developerConnection>scm:git:ssh://bq-devtools@git.dev.bqsoftware.net:29418/lib-mongodb</developerConnection>
         <url>https://github.com/bq/lib-mongodb</url>
         <tag>HEAD</tag>
     </scm>
