@@ -78,16 +78,17 @@ public abstract class DefaultMongoConfiguration extends AbstractMongoConfigurati
 		return new DefaultMongoTypeMapper(null);
 	}
 
-    @Bean
-    public List<MongoCredential> getMongoCredentials() {
-        List<MongoCredential> credentials = Collections.emptyList();
-        String user = getMongoProperty("mongodb.user", String.class);
-        String password = getMongoProperty("mongodb.password", String.class);
-        if(StringUtils.hasLength(user) && StringUtils.hasLength(password)) {
-            credentials.add(MongoCredential.createMongoCRCredential(user, getDatabaseName(), password.toCharArray()));
-        }
-        return credentials;
-    }
+	@Bean
+	public List<MongoCredential> getMongoCredentials() {
+		List<MongoCredential> credentials = new ArrayList<MongoCredential>();
+		String user = getMongoProperty("mongodb.username", String.class);
+		String password = getMongoProperty("mongodb.password", String.class);
+		String authDatabase = getMongoProperty("mongodb.authenticationDatabase", String.class, "admin");
+		if (StringUtils.hasLength(user) && StringUtils.hasLength(password)) {
+			credentials.add(MongoCredential.createMongoCRCredential(user, authDatabase, password.toCharArray()));
+		}
+		return credentials;
+	}
 
 	@Bean
 	public MongoClientOptions getMongoOptions() {
