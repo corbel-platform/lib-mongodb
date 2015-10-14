@@ -38,4 +38,17 @@ public interface PartialUpdateRepository<E, ID extends Serializable> extends Mon
 	 * @return true if such object is found and updated
 	 */
 	public boolean patch(E data, String... fieldsToDelete);
+
+
+    /**
+     * Partially updates (or insert) the object with the specified id, using all non-null values in the data parameter.
+     *
+     * @param id
+     *            The identifier of the object to update
+     * @param data
+     *            An object containing the values
+     * @return true if such object is found and updated
+     */
+    public boolean upsert(ID id, E data);
+
 }

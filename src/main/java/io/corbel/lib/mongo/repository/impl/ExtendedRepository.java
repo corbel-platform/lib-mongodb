@@ -11,9 +11,9 @@ import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 import org.springframework.data.mongodb.repository.support.SimpleMongoRepository;
 import org.springframework.util.Assert;
 
-import io.corbel.lib.mongo.repository.PartialUpdateRepository;
 import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
+import io.corbel.lib.mongo.repository.PartialUpdateRepository;
 
 /**
  * @author Alexander De Leon
@@ -43,6 +43,16 @@ public class ExtendedRepository<E, ID extends Serializable> extends SimpleMongoR
 		Object id = dbObject.get("_id");
 		return doUpdate(id, dbObject, fieldsToDelete);
 	}
+
+    @Override
+    public boolean upsert(ID id, E data) {
+        Object idObject = mongoOperations.getConverter().convertToMongoType(id);
+        DBObject dbObject = getDbObject(data);
+        Update update = new Update();
+        setField("", dbObject, update);
+        return mongoOperations.upsert(Query.query(Criteria.where("_id").is(idObject)), update,
+                metadata.getCollectionName()).isUpdateOfExisting();
+    }
 
 	private DBObject getDbObject(E data) {
 		Object mongoObject = mongoOperations.getConverter().convertToMongoType(data);
@@ -79,4 +89,5 @@ public class ExtendedRepository<E, ID extends Serializable> extends SimpleMongoR
 			}
 		}
 	}
+
 }
