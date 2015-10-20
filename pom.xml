@@ -5,7 +5,7 @@
 
     <groupId>io.corbel.lib</groupId>
     <artifactId>mongodb</artifactId>
-    <version>0.5.0-SNAPSHOT</version>
+    <version>0.5.0</version>
 
     <name>lib-mongodb</name>
 
@@ -33,7 +33,7 @@
         <connection>scm:git:ssh://bq-devtools@git.dev.bqsoftware.net:29418/lib-mongodb</connection>
         <developerConnection>scm:git:ssh://bq-devtools@git.dev.bqsoftware.net:29418/lib-mongodb</developerConnection>
         <url>https://github.com/corbel-platform/lib-mongodb</url>
-        <tag>HEAD</tag>
+        <tag>mongodb-0.5.0</tag>
     </scm>
 
     <distributionManagement>
