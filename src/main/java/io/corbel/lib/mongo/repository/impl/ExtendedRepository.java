@@ -48,6 +48,7 @@ public class ExtendedRepository<E, ID extends Serializable> extends SimpleMongoR
     public boolean upsert(ID id, E data) {
         Object idObject = mongoOperations.getConverter().convertToMongoType(id);
         DBObject dbObject = getDbObject(data);
+        dbObject.removeField("_id");
         Update update = new Update();
         setField("", dbObject, update);
         return mongoOperations.upsert(Query.query(Criteria.where("_id").is(idObject)), update,
