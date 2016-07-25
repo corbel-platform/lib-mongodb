@@ -22,6 +22,11 @@ public class MongoIndex {
 		options = new IndexOptions();
 	}
 
+	public MongoIndex on(String key) {
+		index.on(key, Direction.ASC);
+		return this;
+	}
+
 	public MongoIndex on(String key, Direction direction) {
 		index.on(key, direction);
 		return this;
