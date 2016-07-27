@@ -25,5 +25,5 @@ then
 
     mvn clean deploy --settings .travis/settings.xml -DskipTests=true -B -U
 else
-    echo "Not deploying dependant builds for ${TRANVIS_BRANCH}"
+    echo "Not deploying dependant builds for ${TRAVIS_BRANCH}"
 fi
