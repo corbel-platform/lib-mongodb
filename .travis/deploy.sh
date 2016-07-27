@@ -3,13 +3,13 @@ cd `dirname $0`/..
 
 if [ -z "$SONATYPE_USERNAME" ]
 then
-    echo "Error: Please set SONATYPE_USERNAME and SONATYPE_PASSWORD environment variable"
+    echo "error: please set SONATYPE_USERNAME and SONATYPE_PASSWORD environment variable"
     exit 1
 fi
 
 if [ -z "$SONATYPE_PASSWORD" ]
 then
-    echo "Error: Please set SONATYPE_PASSWORD environment variable"
+    echo "error: please set SONATYPE_PASSWORD environment variable"
     exit 1
 fi
 
@@ -21,4 +21,4 @@ else
     echo "not on a tag -> keep snapshot version in pom.xml"
 fi
 
-mvn clean deploy jacoco:report coveralls:report --settings .travis/settings.xml  -B -U
+mvn clean deploy --settings .travis/settings.xml -DskipTests=true -B -U

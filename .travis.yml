@@ -2,7 +2,7 @@ language: java
 jdk:
   - oraclejdk8
 install:
-  - mvn --settings .travis/settings.xml install -Dmaven.javadoc.skip=true -B -V
+  - mvn test jacoco:report coveralls:report -B -V
 before_install:
   - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
   - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
@@ -11,6 +11,7 @@ deploy:
     provider: script
     script: .travis/deploy.sh
     on:
+      all_branches: true
       repo: devialab/lib-mongodb
       branch: master
       jdk: oraclejdk8
@@ -19,5 +20,6 @@ deploy:
     script: .travis/deploy.sh
     on:
       repo: devialab/lib-mongodb
+      all_branches: true
       tags: true
       jdk: oraclejdk8
