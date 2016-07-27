@@ -21,4 +21,4 @@ else
     echo "not on a tag -> keep snapshot version in pom.xml"
 fi
 
-mvn clean deploy --settings .travis/settings.xml -B -U
+mvn clean deploy jacoco:report coveralls:report --settings .travis/settings.xml  -B -U
