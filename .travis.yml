@@ -13,7 +13,6 @@ deploy:
     on:
       all_branches: true
       repo: devialab/lib-mongodb
-      branch: master
       jdk: oraclejdk8
   -
     provider: script
