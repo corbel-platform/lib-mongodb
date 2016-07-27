@@ -1,7 +1,7 @@
 #!/bin/bash
 cd `dirname $0`/..
 
-if [[ "${TRAVIS_PULL_REQUEST}" = "false" ]] && [[ "${TRAVIS_BRANCH}" = "master" ]]
+if [[ -z "$TRAVIS_TAG" ]] || [[ "${TRAVIS_BRANCH}" = "master" ]]
 then
     if [ -z "$SONATYPE_USERNAME" ]
     then
