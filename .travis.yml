@@ -14,11 +14,3 @@ deploy:
       all_branches: true
       repo: devialab/lib-mongodb
       jdk: oraclejdk8
-  -
-    provider: script
-    script: .travis/deploy.sh
-    on:
-      repo: devialab/lib-mongodb
-      all_branches: true
-      tags: true
-      jdk: oraclejdk8
