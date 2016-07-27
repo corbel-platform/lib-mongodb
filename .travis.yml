@@ -4,8 +4,8 @@ jdk:
 install:
   - mvn --settings .travis/settings.xml install -B -V jacoco:report coveralls:report
 before_install:
-  - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
   - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+  - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
 deploy:
   -
     provider: script
