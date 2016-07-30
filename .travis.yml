@@ -12,5 +12,5 @@ deploy:
     script: .travis/deploy.sh
     on:
       all_branches: true
-      repo: devialab/lib-mongodb
+      repo: corbel-platform/lib-mongodb
       jdk: oraclejdk8

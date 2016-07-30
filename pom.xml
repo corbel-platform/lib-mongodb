@@ -31,9 +31,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git://github.com/devialab/lib-mongodb.git</connection>
-        <developerConnection>scm:git:git@github.com/devialab/lib-mongodb.git</developerConnection>
-        <url>https://github.com/devialab/lib-mongodb</url>
+        <connection>scm:git:git://github.com/corbel-platform/lib-mongodb.git</connection>
+        <developerConnection>scm:git:git@github.com/corbel-platform/lib-mongodb.git</developerConnection>
+        <url>https://github.com/corbel-platform/lib-mongodb</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -199,12 +199,12 @@
 
     <ciManagement>
         <system>Travis CI</system>
-        <url>https://travis-ci.org/devialab/lib-mongodb</url>
+        <url>https://travis-ci.org/corbel-platform/lib-mongodb</url>
     </ciManagement>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/devialab/lib-mongodb/issues</url>
+        <url>https://github.com/corbel-platform/lib-mongodb/issues</url>
     </issueManagement>
 
     <developers>
