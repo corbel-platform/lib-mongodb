@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventLis
 
 import com.google.gson.JsonObject;
 import com.mongodb.DBObject;
+import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
 
 /**
  * @author Rubén Carrasco
@@ -20,12 +21,14 @@ public class IdInjectorMongoEventListener extends AbstractMongoEventListener<Jso
 	private static final String _ID = "_id";
 
 	@Override
-	public void onAfterSave(JsonObject source, DBObject dbo) {
+	public void onAfterSave(AfterSaveEvent<JsonObject> event) {
+		JsonObject source = event.getSource();
+		DBObject dbo = event.getDBObject();
 		if (dbo.containsField(_ID)) {
 			String id = String.valueOf(dbo.get(_ID));
 			LOG.debug("Adding id {} to object after saving", id);
 			source.addProperty(ID, id);
 		}
-		super.onAfterSave(source, dbo);
+		super.onAfterSave(event);
 	}
 }

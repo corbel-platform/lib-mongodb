@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
 
 import com.mongodb.DBObject;
+import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 
 /**
  * @author Alexander De Leon
@@ -26,15 +27,17 @@ public class IdGeneratorMongoEventListener<E> extends AbstractMongoEventListener
 	}
 
 	@Override
-	public void onBeforeSave(E source, DBObject dbo) {
+	public void onBeforeSave(BeforeSaveEvent<E> event) {
+		E source = event.getSource();
 		if (matchDomainClass(source)) {
+			DBObject dbo = event.getDBObject();
 			if (!dbo.containsField(_ID) || dbo.get(_ID) == null) {
 				String generateId = generator.generateId(source);
 				LOG.debug("Generated _id for {}: {}", source, generateId);
 				dbo.put(_ID, generateId);
 			}
 		}
-		super.onBeforeSave(source, dbo);
+		super.onBeforeSave(event);
 	}
 
 	private boolean matchDomainClass(E source) {

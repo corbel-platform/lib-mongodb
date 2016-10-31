@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.mongodb.DBObject;
+import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 
 /**
  * @author Alexander De Leon
@@ -35,7 +36,7 @@ public class IdGeneratorMongoEventListenerTest {
 	public void testNewObjectWithNoId() {
 		DBObject dbObject = mock(DBObject.class);
 		when(dbObject.containsField(_ID)).thenReturn(false);
-		eventListener.onBeforeSave(entity, dbObject);
+		eventListener.onBeforeSave(new BeforeSaveEvent<>(entity, dbObject, entity.getClass().getCanonicalName()));
 		verify(dbObject, Mockito.times(1)).put(_ID, TEST_ID);
 	}
 
@@ -44,7 +45,7 @@ public class IdGeneratorMongoEventListenerTest {
 		DBObject dbObject = mock(DBObject.class);
 		when(dbObject.containsField(_ID)).thenReturn(true);
 		when(dbObject.get(_ID)).thenReturn(null);
-		eventListener.onBeforeSave(entity, dbObject);
+		eventListener.onBeforeSave(new BeforeSaveEvent<>(entity, dbObject, entity.getClass().getCanonicalName()));
 		verify(dbObject, Mockito.times(1)).put(_ID, TEST_ID);
 	}
 
@@ -53,7 +54,7 @@ public class IdGeneratorMongoEventListenerTest {
 		DBObject dbObject = mock(DBObject.class);
 		when(dbObject.containsField(_ID)).thenReturn(true);
 		when(dbObject.get(_ID)).thenReturn(TEST_ID);
-		eventListener.onBeforeSave(entity, dbObject);
+		eventListener.onBeforeSave(new BeforeSaveEvent<>(entity, dbObject, entity.getClass().getCanonicalName()));
 		verify(dbObject, Mockito.never()).put(_ID, TEST_ID);
 	}
 
